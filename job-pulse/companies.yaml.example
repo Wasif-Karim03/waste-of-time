@@ -1,0 +1,12 @@
+# Example companies.yaml configuration
+# Copy this file to companies.yaml and customize with your company lists
+
+greenhouse_boards:
+  - companyname
+  - anothercompany
+  - yetanothercompany
+
+lever_companies:
+  - companyname
+  - anothercompany
+
