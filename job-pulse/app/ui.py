@@ -114,7 +114,7 @@ def ensure_test_users():
     try:
         from app.storage.user_store import get_all_users, create_user
         
-        # Test user data - 45 users
+        # Test user data - 68 users
         TEST_USERS = [
             {"name": "John Smith", "email": "john.smith@test.com", "password": "test123"},
             {"name": "Sarah Johnson", "email": "sarah.johnson@test.com", "password": "test123"},
@@ -162,6 +162,34 @@ def ensure_test_users():
             {"name": "Benjamin Peterson", "email": "benjamin.peterson@test.com", "password": "test123"},
             {"name": "Emma Gray", "email": "emma.gray@test.com", "password": "test123"},
             {"name": "Lucas Ramirez", "email": "lucas.ramirez@test.com", "password": "test123"},
+            {"name": "Victoria Wood", "email": "victoria.wood@test.com", "password": "test123"},
+            {"name": "Jonathan Rivera", "email": "jonathan.rivera@test.com", "password": "test123"},
+            {"name": "Christina Watson", "email": "christina.watson@test.com", "password": "test123"},
+            {"name": "Zachary Brooks", "email": "zachary.brooks@test.com", "password": "test123"},
+            {"name": "Hannah Kelly", "email": "hannah.kelly@test.com", "password": "test123"},
+            {"name": "Nicholas Sanders", "email": "nicholas.sanders@test.com", "password": "test123"},
+            {"name": "Madison Price", "email": "madison.price@test.com", "password": "test123"},
+            {"name": "Anthony Bennett", "email": "anthony.bennett@test.com", "password": "test123"},
+            {"name": "Alexis Wood", "email": "alexis.wood@test.com", "password": "test123"},
+            {"name": "Samuel Barnes", "email": "samuel.barnes@test.com", "password": "test123"},
+            {"name": "Grace Ross", "email": "grace.ross@test.com", "password": "test123"},
+            {"name": "Patrick Henderson", "email": "patrick.henderson@test.com", "password": "test123"},
+            {"name": "Chloe Coleman", "email": "chloe.coleman@test.com", "password": "test123"},
+            {"name": "Thomas Jenkins", "email": "thomas.jenkins@test.com", "password": "test123"},
+            {"name": "Natalie Perry", "email": "natalie.perry@test.com", "password": "test123"},
+            {"name": "Steven Powell", "email": "steven.powell@test.com", "password": "test123"},
+            {"name": "Alyssa Long", "email": "alyssa.long@test.com", "password": "test123"},
+            {"name": "Timothy Patterson", "email": "timothy.patterson@test.com", "password": "test123"},
+            {"name": "Vanessa Hughes", "email": "vanessa.hughes@test.com", "password": "test123"},
+            {"name": "Jason Flores", "email": "jason.flores@test.com", "password": "test123"},
+            {"name": "Jasmine Washington", "email": "jasmine.washington@test.com", "password": "test123"},
+            {"name": "Eric Butler", "email": "eric.butler@test.com", "password": "test123"},
+            {"name": "Taylor Simmons", "email": "taylor.simmons@test.com", "password": "test123"},
+            {"name": "Mark Foster", "email": "mark.foster@test.com", "password": "test123"},
+            {"name": "Kayla Gonzales", "email": "kayla.gonzales@test.com", "password": "test123"},
+            {"name": "Gregory Bryant", "email": "gregory.bryant@test.com", "password": "test123"},
+            {"name": "Alexandra Alexander", "email": "alexandra.alexander@test.com", "password": "test123"},
+            {"name": "Kenneth Russell", "email": "kenneth.russell@test.com", "password": "test123"},
         ]
         
         # Get existing users to check what's already there
