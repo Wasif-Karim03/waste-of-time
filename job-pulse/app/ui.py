@@ -114,7 +114,7 @@ def ensure_test_users():
     try:
         from app.storage.user_store import get_all_users, create_user
         
-        # Test user data - 68 users
+        # Test user data - 84 users
         TEST_USERS = [
             {"name": "John Smith", "email": "john.smith@test.com", "password": "test123"},
             {"name": "Sarah Johnson", "email": "sarah.johnson@test.com", "password": "test123"},
@@ -190,6 +190,21 @@ def ensure_test_users():
             {"name": "Gregory Bryant", "email": "gregory.bryant@test.com", "password": "test123"},
             {"name": "Alexandra Alexander", "email": "alexandra.alexander@test.com", "password": "test123"},
             {"name": "Kenneth Russell", "email": "kenneth.russell@test.com", "password": "test123"},
+            {"name": "Michelle Griffin", "email": "michelle.griffin@test.com", "password": "test123"},
+            {"name": "Derek Diaz", "email": "derek.diaz@test.com", "password": "test123"},
+            {"name": "Brianna Hayes", "email": "brianna.hayes@test.com", "password": "test123"},
+            {"name": "Scott Myers", "email": "scott.myers@test.com", "password": "test123"},
+            {"name": "Monica Ford", "email": "monica.ford@test.com", "password": "test123"},
+            {"name": "Adam Hamilton", "email": "adam.hamilton@test.com", "password": "test123"},
+            {"name": "Crystal Graham", "email": "crystal.graham@test.com", "password": "test123"},
+            {"name": "Sean Sullivan", "email": "sean.sullivan@test.com", "password": "test123"},
+            {"name": "Danielle Wallace", "email": "danielle.wallace@test.com", "password": "test123"},
+            {"name": "Carlos Woods", "email": "carlos.woods@test.com", "password": "test123"},
+            {"name": "Heather Cole", "email": "heather.cole@test.com", "password": "test123"},
+            {"name": "Phillip West", "email": "phillip.west@test.com", "password": "test123"},
+            {"name": "Tiffany Jordan", "email": "tiffany.jordan@test.com", "password": "test123"},
+            {"name": "Ronald Owens", "email": "ronald.owens@test.com", "password": "test123"},
+            {"name": "Stephanie Reynolds", "email": "stephanie.reynolds@test.com", "password": "test123"},
         ]
         
         # Get existing users to check what's already there
