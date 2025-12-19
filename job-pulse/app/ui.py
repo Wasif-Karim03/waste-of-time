@@ -59,6 +59,55 @@ ACTIVITY_DB_PATH = os.environ.get('ACTIVITY_DB_PATH', './user_activity.db')
 init_user_db(USER_DB_PATH)
 init_activity_db(ACTIVITY_DB_PATH)
 
+# Auto-create admin user if no admin exists
+def ensure_admin_user():
+    """Create admin user if no admin exists in the database."""
+    try:
+        from app.storage.user_store import get_all_users, create_user
+        import sqlite3
+        
+        # Check if any admin exists
+        users = get_all_users(USER_DB_PATH)
+        has_admin = any(user.get('is_admin', False) for user in users)
+        
+        if not has_admin:
+            # Create admin user
+            ADMIN_EMAIL = "admin@jobpulse.com"
+            ADMIN_PASSWORD = "admin123"
+            ADMIN_NAME = "Administrator"
+            
+            success, message = create_user(USER_DB_PATH, ADMIN_EMAIL, ADMIN_PASSWORD, ADMIN_NAME)
+            
+            if success:
+                # Set is_admin flag
+                conn = sqlite3.connect(USER_DB_PATH)
+                cursor = conn.cursor()
+                cursor.execute("""
+                    UPDATE users
+                    SET is_admin = 1
+                    WHERE email = ?
+                """, (ADMIN_EMAIL,))
+                conn.commit()
+                conn.close()
+                logger.info(f"✅ Admin user created automatically: {ADMIN_EMAIL}")
+            else:
+                # User might already exist, just set admin flag
+                conn = sqlite3.connect(USER_DB_PATH)
+                cursor = conn.cursor()
+                cursor.execute("""
+                    UPDATE users
+                    SET is_admin = 1
+                    WHERE email = ?
+                """, (ADMIN_EMAIL,))
+                conn.commit()
+                conn.close()
+                logger.info(f"✅ Admin flag set for existing user: {ADMIN_EMAIL}")
+    except Exception as e:
+        logger.error(f"Error ensuring admin user: {e}")
+
+# Create admin on startup
+ensure_admin_user()
+
 
 # Landing page template
 LANDING_PAGE_TEMPLATE = """
