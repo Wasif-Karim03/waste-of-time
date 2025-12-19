@@ -108,6 +108,90 @@ def ensure_admin_user():
 # Create admin on startup
 ensure_admin_user()
 
+# Auto-create test users on startup
+def ensure_test_users():
+    """Create test users if they don't exist."""
+    try:
+        from app.storage.user_store import get_all_users, create_user
+        
+        # Test user data - 45 users
+        TEST_USERS = [
+            {"name": "John Smith", "email": "john.smith@test.com", "password": "test123"},
+            {"name": "Sarah Johnson", "email": "sarah.johnson@test.com", "password": "test123"},
+            {"name": "Michael Brown", "email": "michael.brown@test.com", "password": "test123"},
+            {"name": "Emily Davis", "email": "emily.davis@test.com", "password": "test123"},
+            {"name": "David Wilson", "email": "david.wilson@test.com", "password": "test123"},
+            {"name": "Jessica Martinez", "email": "jessica.martinez@test.com", "password": "test123"},
+            {"name": "Christopher Anderson", "email": "christopher.anderson@test.com", "password": "test123"},
+            {"name": "Amanda Taylor", "email": "amanda.taylor@test.com", "password": "test123"},
+            {"name": "Matthew Thomas", "email": "matthew.thomas@test.com", "password": "test123"},
+            {"name": "Ashley Jackson", "email": "ashley.jackson@test.com", "password": "test123"},
+            {"name": "Daniel White", "email": "daniel.white@test.com", "password": "test123"},
+            {"name": "Melissa Harris", "email": "melissa.harris@test.com", "password": "test123"},
+            {"name": "James Martin", "email": "james.martin@test.com", "password": "test123"},
+            {"name": "Michelle Thompson", "email": "michelle.thompson@test.com", "password": "test123"},
+            {"name": "Robert Garcia", "email": "robert.garcia@test.com", "password": "test123"},
+            {"name": "Laura Martinez", "email": "laura.martinez@test.com", "password": "test123"},
+            {"name": "William Robinson", "email": "william.robinson@test.com", "password": "test123"},
+            {"name": "Stephanie Clark", "email": "stephanie.clark@test.com", "password": "test123"},
+            {"name": "Joseph Rodriguez", "email": "joseph.rodriguez@test.com", "password": "test123"},
+            {"name": "Nicole Lewis", "email": "nicole.lewis@test.com", "password": "test123"},
+            {"name": "Andrew Lee", "email": "andrew.lee@test.com", "password": "test123"},
+            {"name": "Kimberly Walker", "email": "kimberly.walker@test.com", "password": "test123"},
+            {"name": "Ryan Hall", "email": "ryan.hall@test.com", "password": "test123"},
+            {"name": "Rebecca Allen", "email": "rebecca.allen@test.com", "password": "test123"},
+            {"name": "Joshua Young", "email": "joshua.young@test.com", "password": "test123"},
+            {"name": "Samantha King", "email": "samantha.king@test.com", "password": "test123"},
+            {"name": "Kevin Wright", "email": "kevin.wright@test.com", "password": "test123"},
+            {"name": "Rachel Lopez", "email": "rachel.lopez@test.com", "password": "test123"},
+            {"name": "Brian Hill", "email": "brian.hill@test.com", "password": "test123"},
+            {"name": "Lauren Scott", "email": "lauren.scott@test.com", "password": "test123"},
+            {"name": "Justin Green", "email": "justin.green@test.com", "password": "test123"},
+            {"name": "Megan Adams", "email": "megan.adams@test.com", "password": "test123"},
+            {"name": "Brandon Baker", "email": "brandon.baker@test.com", "password": "test123"},
+            {"name": "Brittany Nelson", "email": "brittany.nelson@test.com", "password": "test123"},
+            {"name": "Tyler Carter", "email": "tyler.carter@test.com", "password": "test123"},
+            {"name": "Amber Mitchell", "email": "amber.mitchell@test.com", "password": "test123"},
+            {"name": "Jacob Perez", "email": "jacob.perez@test.com", "password": "test123"},
+            {"name": "Nathan Cooper", "email": "nathan.cooper@test.com", "password": "test123"},
+            {"name": "Olivia Richardson", "email": "olivia.richardson@test.com", "password": "test123"},
+            {"name": "Ethan Cox", "email": "ethan.cox@test.com", "password": "test123"},
+            {"name": "Sophia Howard", "email": "sophia.howard@test.com", "password": "test123"},
+            {"name": "Alexander Ward", "email": "alexander.ward@test.com", "password": "test123"},
+            {"name": "Isabella Torres", "email": "isabella.torres@test.com", "password": "test123"},
+            {"name": "Benjamin Peterson", "email": "benjamin.peterson@test.com", "password": "test123"},
+            {"name": "Emma Gray", "email": "emma.gray@test.com", "password": "test123"},
+            {"name": "Lucas Ramirez", "email": "lucas.ramirez@test.com", "password": "test123"},
+        ]
+        
+        # Get existing users to check what's already there
+        existing_users = get_all_users(USER_DB_PATH)
+        existing_emails = {user['email'].lower() for user in existing_users}
+        
+        created_count = 0
+        skipped_count = 0
+        
+        for user in TEST_USERS:
+            email_lower = user["email"].lower()
+            if email_lower not in existing_emails:
+                success, message = create_user(USER_DB_PATH, user["email"], user["password"], user["name"])
+                if success:
+                    created_count += 1
+                else:
+                    skipped_count += 1
+            else:
+                skipped_count += 1
+        
+        if created_count > 0:
+            logger.info(f"✅ Created {created_count} test users (skipped {skipped_count} existing)")
+        elif skipped_count > 0:
+            logger.info(f"⏭️  All {skipped_count} test users already exist")
+    except Exception as e:
+        logger.error(f"Error ensuring test users: {e}")
+
+# Create test users on startup
+ensure_test_users()
+
 
 # Landing page template
 LANDING_PAGE_TEMPLATE = """
